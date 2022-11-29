@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - uses: olegtarasov/get-tag@v2.1.2
+          id: tagName
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -22,8 +25,8 @@ jobs:
 
       - name: Get image name
         run: |
-          IMAGE_TAG=latest
-          echo "DOCKER_IMAGE=${{ secrets.DOCKER_USER }}/java-api:$IMAGE_TAG" >> $GITHUB_ENV
+          IMAGE_TAG=$GIT_TAG_NAME
+          echo "DOCKER_IMAGE=${{ secrets.DOCKER_USER }}/java-mike:$IMAGE_TAG" >> $GITHUB_ENV
       - name: Build docker image
         run: >-
           docker build .
