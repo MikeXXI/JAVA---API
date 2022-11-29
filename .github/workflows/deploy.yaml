@@ -34,3 +34,19 @@ jobs:
           --label "org.label-schema.vcs-ref=$GITHUB_SHA"
           --tag $DOCKER_IMAGE
       - run: docker push $DOCKER_IMAGE
+      - name: DigitalOcean App Platform deployment
+        uses: digitalocean/app_action@v1.1.4
+        with:
+          app_name: goldfish-app
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          images: '[
+                    {
+                      "name": "java-mike",
+                      "image":{
+                        "registry_type": "DOCKER_HUB",
+                        "registry": "kmikaz",
+                        "repository": "java-mike",
+                        "tag": "$IMAGE_TAG"
+                        },
+                      },
+                  ]'
