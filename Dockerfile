@@ -4,7 +4,7 @@ VOLUME /tmp
 
 COPY init.sh init.sh
 COPY pom.xml pom.xml
-RUN mvn clean install
+RUN mvn clean package
 COPY target/app.jar app.jar
 
 ENV JAVA_OPTS=-XX:+UseSerialGC
