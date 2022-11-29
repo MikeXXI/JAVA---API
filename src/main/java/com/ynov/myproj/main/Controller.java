@@ -12,7 +12,7 @@ public class Controller {
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
-        return new ResponseEntity<>("Hello world ! Mike, Hugo 2, Maxime, Michael", HttpStatus.OK);
+        return new ResponseEntity<>("Hello world ! Mike, Hugo, Maxime, Michael", HttpStatus.OK);
     }
 
 
